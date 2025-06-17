@@ -4,6 +4,7 @@ import 'package:flutter_website/extentions/app_extentions.dart';
 import 'package:flutter_website/features/home/presentation/widgets/appbar_widget.dart';
 import 'package:flutter_website/features/home/presentation/widgets/collection_widget.dart';
 import 'package:flutter_website/features/home/presentation/widgets/footer_widget.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -74,48 +75,57 @@ class HomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 22),
               child: GridView.builder(
-                itemCount: 10,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: getCrossAxisCount(screenWidth),
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
-                  childAspectRatio: 1,
-                ),
-                itemBuilder: (context, index) {
-                  return Container(
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12)),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Image.asset(
-                            "images/cover.jpg",
-                            fit: BoxFit.cover,
-                            width: double.infinity,
+                  itemCount: 10,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: getCrossAxisCount(screenWidth),
+                    crossAxisSpacing: 20,
+                    mainAxisSpacing: 20,
+                    childAspectRatio: 1,
+                  ),
+                  itemBuilder: (context, index) {
+                    return AnimationConfiguration.staggeredGrid(
+                      position: index,
+                      columnCount: getCrossAxisCount(screenWidth),
+                      duration: const Duration(milliseconds: 600),
+                      child: ScaleAnimation(
+                        child: FadeInAnimation(
+                          child: Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(12),
+                                topRight: Radius.circular(12),
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Image.asset(
+                                    "images/cover.jpg",
+                                    fit: BoxFit.cover,
+                                    width: double.infinity,
+                                  ),
+                                ),
+                                Text(
+                                  "Name  ${index + 1}",
+                                  style: AppTexts.small,
+                                ),
+                                SizedBox(height: 2),
+                                Text(
+                                  "price ${index + 1}",
+                                  style: AppTexts.small,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        Text(
-                          "Name  ${index + 1}",
-                          style: AppTexts.small,
-                        ),
-                        SizedBox(height: 2),
-                        Text(
-                          "price ${index + 1}",
-                          style: AppTexts.small,
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
+                      ),
+                    );
+                  }),
             ),
             SizedBox(height: 50),
             // collection part
