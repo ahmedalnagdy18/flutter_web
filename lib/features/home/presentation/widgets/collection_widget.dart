@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_website/core/fonts/app_text.dart';
 import 'package:flutter_website/extentions/app_extentions.dart';
+import 'package:flutter_website/features/home/presentation/screens/collection_page.dart';
 
 class CollectionWidget extends StatelessWidget {
   const CollectionWidget({super.key});
@@ -16,7 +17,15 @@ class CollectionWidget extends StatelessWidget {
           children: [
             Expanded(
               flex: 3,
-              child: _collectionData(name: "Bags"),
+              child: InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CollectionPage(
+                          type: 'Bags',
+                        ),
+                      )),
+                  child: _collectionData(name: "Bags")),
             ),
             SizedBox(width: 6),
             Expanded(
@@ -24,11 +33,27 @@ class CollectionWidget extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
-                    child: _collectionData(name: "Woman"),
+                    child: InkWell(
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CollectionPage(
+                                type: 'Woman',
+                              ),
+                            )),
+                        child: _collectionData(name: "Woman")),
                   ),
                   SizedBox(height: 6),
                   Expanded(
-                    child: _collectionData(name: "Man"),
+                    child: InkWell(
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CollectionPage(
+                                type: 'Men',
+                              ),
+                            )),
+                        child: _collectionData(name: "Man")),
                   ),
                 ],
               ),

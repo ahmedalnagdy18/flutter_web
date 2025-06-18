@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_website/core/fonts/app_text.dart';
 import 'package:flutter_website/extentions/app_extentions.dart';
-import 'package:flutter_website/features/home/presentation/widgets/appbar_widget.dart';
-import 'package:flutter_website/features/home/presentation/widgets/collection_widget.dart';
 import 'package:flutter_website/features/home/presentation/widgets/footer_widget.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
+class CollectionPage extends StatelessWidget {
+  const CollectionPage({super.key, required this.type});
+  final String type;
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -22,65 +20,29 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // appbar part
             Container(
-              height: appHight(context, 0.10),
+              height: appHight(context, 0.25),
               width: double.infinity,
-              decoration: BoxDecoration(color: Colors.white),
-              child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 22),
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      if (constraints.maxWidth < 800) {
-                        // Scrollable version for small screens
-                        return SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: AppbarMobileWidget(),
-                        );
-                      } else {
-                        // Normal layout for wide screens
-                        return AppbarWidget();
-                      }
-                    },
-                  )),
-            ),
-            Container(
-              height: appHight(context, 0.60),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.black,
-              ),
-              child: Image.asset(
-                "images/cover.jpg",
-                fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(height: 30),
-            Center(child: Text("Gear Up. Stand Out.", style: AppTexts.title)),
-            SizedBox(height: 30),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22),
-                child: Text(
-                  "High-performance sportswear designed for comfort, style, and results — built to move when you do.",
-                  style: AppTexts.regular,
-                ),
-              ),
+              color: Colors.black,
+              child: Center(
+                  child: Text(
+                "$type Collection",
+                style: AppTexts.subTitle,
+              )),
             ),
             SizedBox(height: 50),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 22),
-              child: Text("Leatest Products", style: AppTexts.title),
+              child: Text("$type Sport Item", style: AppTexts.title),
             ),
-            SizedBox(height: 25),
+            SizedBox(height: 24),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 22),
               child: GridView.builder(
-                  itemCount: 8,
+                  itemCount: 12,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -133,37 +95,6 @@ class HomePage extends StatelessWidget {
                   }),
             ),
             SizedBox(height: 50),
-            // collection part
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 22),
-              child: Text("Collection", style: AppTexts.title),
-            ),
-            SizedBox(height: 24),
-            CollectionWidget(),
-            SizedBox(height: 50),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Explore Our Featured Collection",
-                      style: AppTexts.title,
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      "Find the latest trends and timeless pieces designed to match your lifestyle.",
-                      style: AppTexts.regular,
-                    ),
-                    const SizedBox(height: 30),
-                  ],
-                ),
-              ),
-            ),
-
-            SizedBox(height: 50),
-            // footer part
             FooterWidget(),
           ],
         ),
