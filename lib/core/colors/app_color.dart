@@ -7,6 +7,7 @@ class AppColors {
   static Color primaryColor = const Color(0xff489FD5);
   static Color secondaryColor = const Color(0xff000000);
   static Color tertiaryColor = const Color(0xff84C3EB);
+  static Color lightGrey = const Color(0xffF5F5F5);
 
   //Border colors
   static Color primaryBorder = const Color(0xFF489FD5);

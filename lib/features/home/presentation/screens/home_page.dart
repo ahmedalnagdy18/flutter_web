@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_website/core/fonts/app_text.dart';
+import 'package:flutter_website/core/routes/navigation_helper.dart';
 import 'package:flutter_website/extentions/app_extentions.dart';
 import 'package:flutter_website/features/home/presentation/widgets/appbar_widget.dart';
 import 'package:flutter_website/features/home/presentation/widgets/collection_widget.dart';
@@ -96,35 +97,40 @@ class HomePage extends StatelessWidget {
                       duration: const Duration(milliseconds: 600),
                       child: ScaleAnimation(
                         child: FadeInAnimation(
-                          child: Container(
-                            clipBehavior: Clip.antiAlias,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(12),
-                                topRight: Radius.circular(12),
+                          child: InkWell(
+                            onTap: () =>
+                                NavigationHelper.goToProductDetailsPage(
+                                    context),
+                            child: Container(
+                              clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(12),
+                                  topRight: Radius.circular(12),
+                                ),
                               ),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Image.asset(
-                                    "images/cover.jpg",
-                                    fit: BoxFit.cover,
-                                    width: double.infinity,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Image.asset(
+                                      "images/cover.jpg",
+                                      fit: BoxFit.cover,
+                                      width: double.infinity,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  "Name  ${index + 1}",
-                                  style: AppTexts.small,
-                                ),
-                                SizedBox(height: 2),
-                                Text(
-                                  "price \$${index + 1}",
-                                  style: AppTexts.small,
-                                ),
-                              ],
+                                  Text(
+                                    "Name  ${index + 1}",
+                                    style: AppTexts.small,
+                                  ),
+                                  SizedBox(height: 2),
+                                  Text(
+                                    "price \$${index + 1}",
+                                    style: AppTexts.small,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
