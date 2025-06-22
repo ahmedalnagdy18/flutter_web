@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_website/core/colors/app_color.dart';
+import 'package:flutter_website/core/common/app_buttons.dart';
 import 'package:flutter_website/core/fonts/app_text.dart';
 import 'package:flutter_website/extentions/app_extentions.dart';
 import 'package:flutter_website/features/home/presentation/widgets/appbar_widget.dart';
@@ -10,6 +11,7 @@ class ProductDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 800;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -39,7 +41,7 @@ class ProductDetailsPage extends StatelessWidget {
                   )),
             ),
             Container(
-              height: appHight(context, 0.25),
+              height: appHight(context, 0.20),
               width: double.infinity,
               color: Colors.black,
               child: Center(
@@ -49,49 +51,109 @@ class ProductDetailsPage extends StatelessWidget {
               )),
             ),
             SizedBox(height: 50),
-
-            Center(
-              child: Container(
-                padding: EdgeInsets.all(12),
-                width: appWidth(context, 0.60),
-                height: appHight(context, 0.30),
-                color: AppColors.lightGrey,
-                child: Row(
-                  children: [
-                    Column(
+            isMobile
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 22),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(child: Image.asset('images/cover.jpg')),
+                        // Thumbnails
+                        Row(
+                          children: [
+                            SizedBox(
+                                width: 100,
+                                height: 100,
+                                child: Image.asset('images/cover.jpg')),
+                            SizedBox(width: 12),
+                            SizedBox(
+                                width: 100,
+                                height: 100,
+                                child: Image.asset('images/cover.jpg')),
+                            SizedBox(width: 12),
+                            SizedBox(
+                                width: 100,
+                                height: 100,
+                                child: Image.asset('images/cover.jpg')),
+                          ],
+                        ),
                         SizedBox(height: 12),
-                        Expanded(child: Image.asset('images/cover.jpg')),
+                        Image.asset('images/cover.jpg'),
                         SizedBox(height: 12),
-                        Expanded(child: Image.asset('images/cover.jpg')),
+                        Text("Item Name", style: AppTexts.title),
+                        SizedBox(height: 12),
+                        Text("\$ Price",
+                            style: AppTexts.small
+                                .copyWith(color: AppColors.primaryColor)),
+                        SizedBox(height: 12),
+                        Text(
+                          "description description description description description",
+                          style: AppTexts.small,
+                        ),
+                        SizedBox(height: 12),
+                        MainAppButton(onPressed: () {}, text: "Add to cart"),
                       ],
                     ),
-                    SizedBox(width: 12),
-                    Image.asset('images/cover.jpg'),
-                    SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                  )
+                : Center(
+                    child: Container(
+                      padding: EdgeInsets.all(12),
+                      width: double.infinity,
+                      height: appHight(context, isMobile ? 0.50 : 0.30),
+                      color: AppColors.lightGrey,
+                      child: Row(
                         children: [
-                          Text("Item Name"),
-                          SizedBox(height: 12),
-                          Text("\$ Price"),
-                          SizedBox(height: 12),
                           Expanded(
-                            child: Text(
-                              "describtion describtion describtion describtion describtion",
-                              style: AppTexts.small,
+                            flex: 1,
+                            child: Column(
+                              children: [
+                                Expanded(
+                                    child: Image.asset('images/cover.jpg')),
+                                SizedBox(height: 12),
+                                Expanded(
+                                    child: Image.asset('images/cover.jpg')),
+                                SizedBox(height: 12),
+                                Expanded(
+                                    child: Image.asset('images/cover.jpg')),
+                              ],
+                            ),
+                          ),
+                          SizedBox(width: 12),
+                          Expanded(
+                              flex: 2,
+                              child: Image.asset(
+                                'images/cover.jpg',
+                                fit: BoxFit.fill,
+                              )),
+                          SizedBox(width: 12),
+                          Expanded(
+                            flex: 1,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Item Name", style: AppTexts.title),
+                                SizedBox(height: 12),
+                                Text("\$ Price",
+                                    style: AppTexts.small.copyWith(
+                                        color: AppColors.primaryColor)),
+                                SizedBox(height: 12),
+                                Expanded(
+                                  child: Text(
+                                    "describtion describtion describtion describtion describtion",
+                                    style: AppTexts.small,
+                                  ),
+                                ),
+                                MainAppButton(
+                                  onPressed: () {},
+                                  text: "Add to cart",
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 50),
+                    ),
+                  ),
+            SizedBox(height: 150),
             // footer part
             FooterWidget(),
           ],
