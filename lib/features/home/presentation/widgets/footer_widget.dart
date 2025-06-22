@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_website/core/fonts/app_text.dart';
+import 'package:flutter_website/core/routes/navigation_helper.dart';
 
 class FooterWidget extends StatelessWidget {
   const FooterWidget({super.key});
@@ -24,11 +25,11 @@ class FooterWidget extends StatelessWidget {
               if (isMobile)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: _footerLinks(),
+                  children: _footerLinks(context),
                 )
               else
                 Row(
-                  children: _footerLinks(),
+                  children: _footerLinks(context),
                 ),
               SizedBox(height: 30),
               Divider(color: Colors.white24),
@@ -45,11 +46,13 @@ class FooterWidget extends StatelessWidget {
   }
 }
 
-List<Widget> _footerLinks() {
+List<Widget> _footerLinks(BuildContext context) {
   return [
     TextButton(
         style: ButtonStyle(overlayColor: WidgetStatePropertyAll(Colors.grey)),
-        onPressed: () {},
+        onPressed: () {
+          NavigationHelper.goToAboutUsPage(context);
+        },
         child: Text("About us", style: TextStyle(color: Colors.white))),
     SizedBox(width: 14),
     TextButton(
