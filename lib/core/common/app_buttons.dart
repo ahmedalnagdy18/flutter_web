@@ -11,7 +11,7 @@ class MainAppButton extends StatelessWidget {
       required this.text,
       this.buttonColor,
       this.borderColor});
-  final Function() onPressed;
+  final Function()? onPressed;
   final Color? textColor;
   final Color? buttonColor;
   final Color? borderColor;

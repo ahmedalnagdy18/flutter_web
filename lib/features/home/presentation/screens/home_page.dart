@@ -89,6 +89,7 @@ class HomePage extends StatelessWidget {
                     crossAxisSpacing: 20,
                     mainAxisSpacing: 20,
                     childAspectRatio: 1,
+                    mainAxisExtent: 200,
                   ),
                   itemBuilder: (context, index) {
                     return AnimationConfiguration.staggeredGrid(
