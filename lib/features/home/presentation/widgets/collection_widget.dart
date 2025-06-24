@@ -97,6 +97,7 @@ Widget _collectionData({String? name, String? image}) {
   );
 }
 
+//list of images
 List collectionsImages = [
   'images/bags.jpg',
   'images/woman.jpg',
