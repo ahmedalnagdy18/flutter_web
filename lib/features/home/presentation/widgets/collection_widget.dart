@@ -25,7 +25,8 @@ class CollectionWidget extends StatelessWidget {
                           type: 'Bags',
                         ),
                       )),
-                  child: _collectionData(name: "Bags")),
+                  child: _collectionData(
+                      name: "Bags", image: collectionsImages[0])),
             ),
             SizedBox(width: 6),
             Expanded(
@@ -41,7 +42,8 @@ class CollectionWidget extends StatelessWidget {
                                 type: 'Woman',
                               ),
                             )),
-                        child: _collectionData(name: "Woman")),
+                        child: _collectionData(
+                            name: "Woman", image: collectionsImages[1])),
                   ),
                   SizedBox(height: 6),
                   Expanded(
@@ -53,7 +55,8 @@ class CollectionWidget extends StatelessWidget {
                                 type: 'Men',
                               ),
                             )),
-                        child: _collectionData(name: "Man")),
+                        child: _collectionData(
+                            name: "Man", image: collectionsImages[2])),
                   ),
                 ],
               ),
@@ -65,12 +68,12 @@ class CollectionWidget extends StatelessWidget {
   }
 }
 
-Widget _collectionData({String? name}) {
+Widget _collectionData({String? name, String? image}) {
   return Stack(
     alignment: AlignmentDirectional.bottomCenter,
     children: [
       Image.asset(
-        "images/cover.jpg",
+        image ?? "",
         fit: BoxFit.cover,
         width: double.infinity,
         height: double.infinity,
@@ -93,3 +96,9 @@ Widget _collectionData({String? name}) {
     ],
   );
 }
+
+List collectionsImages = [
+  'images/bags.jpg',
+  'images/woman.jpg',
+  'images/men.jpg',
+];
