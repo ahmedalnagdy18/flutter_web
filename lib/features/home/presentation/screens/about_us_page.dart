@@ -4,6 +4,7 @@ import 'package:flutter_website/core/colors/app_color.dart';
 import 'package:flutter_website/core/common/app_buttons.dart';
 import 'package:flutter_website/core/common/appbar_common_widget.dart';
 import 'package:flutter_website/core/fonts/app_text.dart';
+import 'package:flutter_website/core/routes/navigation_helper.dart';
 import 'package:flutter_website/features/home/presentation/widgets/footer_widget.dart';
 
 class AboutUsPage extends StatefulWidget {
@@ -51,7 +52,9 @@ class _AboutUsPageState extends State<AboutUsPage> {
                           SizedBox(
                             width: 150,
                             child: MainAppButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                NavigationHelper.goToContactUsPage(context);
+                              },
                               text: "Contact us",
                             ),
                           ),

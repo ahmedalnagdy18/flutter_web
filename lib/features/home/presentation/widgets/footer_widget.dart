@@ -69,7 +69,9 @@ List<Widget> _footerLinks(BuildContext context) {
     SizedBox(width: 14),
     TextButton(
         style: ButtonStyle(overlayColor: WidgetStatePropertyAll(Colors.grey)),
-        onPressed: () {},
-        child: Text("Privacy", style: TextStyle(color: Colors.white))),
+        onPressed: () {
+          NavigationHelper.goToFAQPage(context);
+        },
+        child: Text("FAQ", style: TextStyle(color: Colors.white))),
   ];
 }

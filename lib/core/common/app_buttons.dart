@@ -20,6 +20,7 @@ class MainAppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
+      disabledColor: buttonColor,
       highlightElevation: 0,
       splashColor: Colors.transparent,
       onPressed: onPressed,

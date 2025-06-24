@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_website/core/common/app_asset_image.dart';
 import 'package:flutter_website/features/home/presentation/screens/home_page.dart';
+import 'injection_container.dart' as di;
 
-void main() {
+void main() async {
+  await di.init();
   runApp(const MyApp());
 }
 

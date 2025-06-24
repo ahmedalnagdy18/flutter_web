@@ -10,7 +10,9 @@ class AppbarMobileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text("WEBSITE", style: AppTexts.title),
+        InkWell(
+            onTap: () => NavigationHelper.goToHomePage(context),
+            child: Text("WEBSITE", style: AppTexts.title)),
         const SizedBox(width: 20),
         TextButton(
             onPressed: () => NavigationHelper.goToCollection(context, 'Bags'),
@@ -51,7 +53,9 @@ class AppbarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text("WEBSITE", style: AppTexts.title),
+        InkWell(
+            onTap: () => NavigationHelper.goToHomePage(context),
+            child: Text("WEBSITE", style: AppTexts.title)),
         const SizedBox(width: 33),
         TextButton(
             onPressed: () => NavigationHelper.goToCollection(context, 'Bags'),

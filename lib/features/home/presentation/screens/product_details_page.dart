@@ -4,11 +4,12 @@ import 'package:flutter_website/core/common/app_buttons.dart';
 import 'package:flutter_website/core/common/appbar_common_widget.dart';
 import 'package:flutter_website/core/fonts/app_text.dart';
 import 'package:flutter_website/extentions/app_extentions.dart';
+import 'package:flutter_website/features/home/domain/entity/model/product_model.dart';
 import 'package:flutter_website/features/home/presentation/widgets/footer_widget.dart';
 
 class ProductDetailsPage extends StatelessWidget {
-  const ProductDetailsPage({super.key});
-
+  const ProductDetailsPage({super.key, required this.products});
+  final ProductModel products;
   @override
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < 800;
@@ -33,30 +34,33 @@ class ProductDetailsPage extends StatelessWidget {
                             SizedBox(
                                 width: 100,
                                 height: 100,
-                                child: Image.asset('images/cover.jpg')),
+                                child: Image.network(
+                                    products.images?.first ?? "")),
                             SizedBox(width: 12),
                             SizedBox(
                                 width: 100,
                                 height: 100,
-                                child: Image.asset('images/cover.jpg')),
+                                child: Image.network(
+                                    products.images?.first ?? "")),
                             SizedBox(width: 12),
                             SizedBox(
                                 width: 100,
                                 height: 100,
-                                child: Image.asset('images/cover.jpg')),
+                                child: Image.network(
+                                    products.images?.first ?? "")),
                           ],
                         ),
                         SizedBox(height: 12),
-                        Image.asset('images/cover.jpg'),
+                        Image.network(products.images?.first ?? ""),
                         SizedBox(height: 12),
-                        Text("Item Name", style: AppTexts.title),
+                        Text(products.title ?? "", style: AppTexts.title),
                         SizedBox(height: 12),
-                        Text("\$ Price",
+                        Text("\$ ${products.price}",
                             style: AppTexts.small
                                 .copyWith(color: AppColors.primaryColor)),
                         SizedBox(height: 12),
                         Text(
-                          "description description description description description",
+                          products.description ?? "",
                           style: AppTexts.small,
                         ),
                         SizedBox(height: 12),
@@ -77,22 +81,25 @@ class ProductDetailsPage extends StatelessWidget {
                             child: Column(
                               children: [
                                 Expanded(
-                                    child: Image.asset('images/cover.jpg')),
+                                    child: Image.network(
+                                        products.images?.first ?? "")),
                                 SizedBox(height: 12),
                                 Expanded(
-                                    child: Image.asset('images/cover.jpg')),
+                                    child: Image.network(
+                                        products.images?.first ?? "")),
                                 SizedBox(height: 12),
                                 Expanded(
-                                    child: Image.asset('images/cover.jpg')),
+                                    child: Image.network(
+                                        products.images?.first ?? "")),
                               ],
                             ),
                           ),
                           SizedBox(width: 12),
                           Expanded(
                               flex: 2,
-                              child: Image.asset(
-                                'images/cover.jpg',
-                                fit: BoxFit.fill,
+                              child: Image.network(
+                                products.images?.first ?? "",
+                                fit: BoxFit.contain,
                               )),
                           SizedBox(width: 12),
                           Expanded(
@@ -100,15 +107,16 @@ class ProductDetailsPage extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Item Name", style: AppTexts.title),
+                                Text(products.title ?? "",
+                                    style: AppTexts.title),
                                 SizedBox(height: 12),
-                                Text("\$ Price",
+                                Text("\$ ${products.price}",
                                     style: AppTexts.small.copyWith(
                                         color: AppColors.primaryColor)),
                                 SizedBox(height: 12),
                                 Expanded(
                                   child: Text(
-                                    "describtion describtion describtion describtion describtion",
+                                    products.description ?? "",
                                     style: AppTexts.small,
                                   ),
                                 ),
