@@ -77,6 +77,8 @@ Widget _collectionData({String? name, String? image}) {
         fit: BoxFit.cover,
         width: double.infinity,
         height: double.infinity,
+        cacheHeight: 2000,
+        cacheWidth: 2000,
       ),
       Container(
         padding: EdgeInsets.symmetric(horizontal: 8),
