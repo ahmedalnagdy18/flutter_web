@@ -3,7 +3,7 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"flutter_bootstrap.js": "9c1cc34da44bde74c438e8e87ccea882",
+const RESOURCES = {"flutter_bootstrap.js": "e5aeced5eae4dcb2c091e3135e4782b5",
 "version.json": "04a265a34776b80c11723f26a788a07c",
 "index.html": "961f8f7a97129b26838611ee62a76487",
 "/": "961f8f7a97129b26838611ee62a76487",
@@ -22,7 +22,7 @@ const RESOURCES = {"flutter_bootstrap.js": "9c1cc34da44bde74c438e8e87ccea882",
 "assets/images/about_us.png": "1a3ff96c386cd47ddb3b712eb58ee4e5",
 "assets/images/bags.jpg": "d2e11c594008685e4dc523397c5d8fbf",
 "assets/images/logo.png": "ee0fcc6848d2f3cca979f5447ea20208",
-"assets/images/cover.jpg": "457dfe57c7fefcf81f1b5c99aabfd62b",
+"assets/images/cover.jpg": "1dccb2ec5236582fad8239309e2eac72",
 "assets/images/contactus.png": "7f8928b7a5d8ef5abfa8b077119be2ae",
 "assets/images/woman.jpg": "82923411ba29c78ceb062339a0ca8b43",
 "assets/images/premium.png": "9b0543814598e43616d2e2690906036c",
