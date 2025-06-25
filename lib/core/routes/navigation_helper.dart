@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_website/features/home/domain/entity/model/product_model.dart';
 import 'package:flutter_website/features/home/presentation/screens/about_us_page.dart';
+import 'package:flutter_website/features/home/presentation/screens/cart_page.dart';
 import 'package:flutter_website/features/home/presentation/screens/collection_page.dart';
 import 'package:flutter_website/features/home/presentation/screens/contact_us_page.dart';
 import 'package:flutter_website/features/home/presentation/screens/faq_page.dart';
@@ -14,6 +15,7 @@ class NavigationHelper {
   static const String aboutUsRoute = '/about';
   static const String productDetailsRoute = '/product';
   static const String collectionRoutePrefix = '/collection';
+  static const String cartRoute = '/cart';
 
   static void goToHomePage(BuildContext context) {
     final currentRoute = ModalRoute.of(context)?.settings.name;
@@ -90,6 +92,19 @@ class NavigationHelper {
         MaterialPageRoute(
           settings: const RouteSettings(name: faqRoute),
           builder: (context) => FaqPage(),
+        ),
+      );
+    }
+  }
+
+  static void goToCartPage(BuildContext context) {
+    final currentRoute = ModalRoute.of(context)?.settings.name;
+    if (currentRoute != cartRoute) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          settings: const RouteSettings(name: cartRoute),
+          builder: (context) => CartPage(),
         ),
       );
     }

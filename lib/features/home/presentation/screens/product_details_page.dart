@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_website/core/colors/app_color.dart';
 import 'package:flutter_website/core/common/app_buttons.dart';
 import 'package:flutter_website/core/common/appbar_common_widget.dart';
 import 'package:flutter_website/core/fonts/app_text.dart';
 import 'package:flutter_website/extentions/app_extentions.dart';
 import 'package:flutter_website/features/home/domain/entity/model/product_model.dart';
+import 'package:flutter_website/features/home/presentation/cubits/add_to_cart/add_to_card_cubit.dart';
 import 'package:flutter_website/features/home/presentation/widgets/footer_widget.dart';
 
 class ProductDetailsPage extends StatelessWidget {
@@ -64,7 +66,15 @@ class ProductDetailsPage extends StatelessWidget {
                           style: AppTexts.small,
                         ),
                         SizedBox(height: 12),
-                        MainAppButton(onPressed: () {}, text: "Add to cart"),
+                        MainAppButton(
+                            onPressed: () {
+                              context
+                                  .read<AddToCardCubit>()
+                                  .addItemToCart(products);
+                              showToastMessage(
+                                  message: 'Product add to cart successflly');
+                            },
+                            text: "Add to cart"),
                       ],
                     ),
                   )
@@ -121,7 +131,14 @@ class ProductDetailsPage extends StatelessWidget {
                                   ),
                                 ),
                                 MainAppButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    context
+                                        .read<AddToCardCubit>()
+                                        .addItemToCart(products);
+                                    showToastMessage(
+                                        message:
+                                            'Product add to cart successflly');
+                                  },
                                   text: "Add to cart",
                                 ),
                               ],

@@ -40,7 +40,10 @@ class AppbarMobileWidget extends StatelessWidget {
         IconButton(onPressed: () {}, icon: const Icon(Icons.person_2_outlined)),
         const SizedBox(width: 12),
         IconButton(
-            onPressed: () {}, icon: const Icon(Icons.shopping_basket_outlined)),
+            onPressed: () {
+              NavigationHelper.goToCartPage(context);
+            },
+            icon: const Icon(Icons.shopping_basket_outlined)),
       ],
     );
   }
@@ -83,7 +86,10 @@ class AppbarWidget extends StatelessWidget {
         IconButton(onPressed: () {}, icon: const Icon(Icons.person_2_outlined)),
         const SizedBox(width: 12),
         IconButton(
-            onPressed: () {}, icon: const Icon(Icons.shopping_basket_outlined)),
+            onPressed: () {
+              NavigationHelper.goToCartPage(context);
+            },
+            icon: const Icon(Icons.shopping_basket_outlined)),
       ],
     );
   }

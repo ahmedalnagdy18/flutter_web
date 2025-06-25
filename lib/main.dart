@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_website/core/common/app_asset_image.dart';
+import 'package:flutter_website/features/home/presentation/cubits/add_to_cart/add_to_card_cubit.dart';
 import 'package:flutter_website/features/home/presentation/screens/home_page.dart';
 import 'injection_container.dart' as di;
 
@@ -13,9 +15,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const PrecacheWrapper(child: HomePage()),
+    return BlocProvider(
+      create: (context) => AddToCardCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: const PrecacheWrapper(child: HomePage()),
+      ),
     );
   }
 }
