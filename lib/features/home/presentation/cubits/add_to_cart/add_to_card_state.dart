@@ -1,10 +1,10 @@
 part of 'add_to_card_cubit.dart';
 
 sealed class AddToCardState extends Equatable {
-  const AddToCardState();
-
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
+
+  const AddToCardState();
 }
 
 final class AddToCardInitial extends AddToCardState {}
@@ -15,4 +15,7 @@ class CartState extends AddToCardState {
   final List<ProductModel> cartItems;
 
   const CartState({required this.cartItems});
+
+  @override
+  List<Object?> get props => [cartItems];
 }
