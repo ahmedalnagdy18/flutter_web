@@ -89,7 +89,9 @@ class _AboutUsPageState extends State<AboutUsPage> {
                               SizedBox(
                                 width: 150,
                                 child: MainAppButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    NavigationHelper.goToContactUsPage(context);
+                                  },
                                   text: "Contact us",
                                 ),
                               ),

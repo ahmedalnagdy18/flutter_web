@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_website/core/common/app_buttons.dart';
 import 'package:flutter_website/core/common/appbar_common_widget.dart';
 import 'package:flutter_website/core/fonts/app_text.dart';
+import 'package:flutter_website/core/routes/navigation_helper.dart';
 import 'package:flutter_website/features/home/presentation/cubits/add_to_cart/add_to_card_cubit.dart';
 import 'package:flutter_website/features/home/presentation/widgets/footer_widget.dart';
 
@@ -48,10 +49,13 @@ class CartPage extends StatelessWidget {
                             // product table
                             productTable(context),
                             //cart Summary
-                            cartSammary(
-                                finalTotal:
-                                    '\$${finalTotal.toStringAsFixed(2)}',
-                                cartTotal: '\$${cartTotal.toStringAsFixed(2)}'),
+                            state.cartItems.isNotEmpty
+                                ? cartSammary(
+                                    finalTotal:
+                                        '\$${finalTotal.toStringAsFixed(2)}',
+                                    cartTotal:
+                                        '\$${cartTotal.toStringAsFixed(2)}')
+                                : SizedBox(),
                           ],
                         )
                       : Row(
@@ -60,13 +64,31 @@ class CartPage extends StatelessWidget {
                             // product table
                             Expanded(child: productTable(context)),
                             //cart Summary
-                            cartSammary(
-                                finalTotal:
-                                    '\$${finalTotal.toStringAsFixed(2)}',
-                                cartTotal: '\$${cartTotal.toStringAsFixed(2)}'),
+                            state.cartItems.isNotEmpty
+                                ? cartSammary(
+                                    finalTotal:
+                                        '\$${finalTotal.toStringAsFixed(2)}',
+                                    cartTotal:
+                                        '\$${cartTotal.toStringAsFixed(2)}')
+                                : SizedBox(),
                           ],
                         ),
                 ),
+                if (state.cartItems.isNotEmpty) ...[
+                  SizedBox(height: 40),
+                  Center(
+                    child: SizedBox(
+                      width: 150,
+                      child: MainAppButton(
+                        onPressed: () {
+                          context.read<AddToCardCubit>().clearItemsFromCart();
+                        },
+                        text: "Clear All",
+                      ),
+                    ),
+                  ),
+                ],
+
                 SizedBox(height: 100),
                 FooterWidget(),
               ],
@@ -82,7 +104,26 @@ class CartPage extends StatelessWidget {
     final isMobile = MediaQuery.of(context).size.width < 800;
 
     if (state is! CartState || state.cartItems.isEmpty) {
-      return Text('Your cart is empty.', style: AppTexts.small);
+      return Column(
+        children: [
+          Text('Your cart is empty.', style: AppTexts.midTitle),
+          SizedBox(height: 50),
+          SizedBox(
+            height: 250,
+            child: Image.asset('images/addtocart.png'),
+          ),
+          SizedBox(height: 50),
+          SizedBox(
+            width: 150,
+            child: MainAppButton(
+              onPressed: () {
+                NavigationHelper.goToCollection(context, 'Products');
+              },
+              text: "Shopping now",
+            ),
+          ),
+        ],
+      );
     }
 
     final cartItems = state.cartItems;
@@ -90,53 +131,69 @@ class CartPage extends StatelessWidget {
       return Column(
         children: cartItems.map((item) {
           final total = (item.price ?? 0) * (1);
-          return Container(
-            margin: const EdgeInsets.only(bottom: 16),
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey.shade300),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+          return Stack(
+            alignment: Alignment.topRight,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(bottom: 16),
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey.shade300),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.network(
-                      item.thumbnail ?? '',
-                      width: 80,
-                      height: 80,
-                      fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) =>
-                          const Icon(Icons.image_not_supported),
+                    Row(
+                      children: [
+                        Image.network(
+                          item.thumbnail ?? '',
+                          width: 80,
+                          height: 80,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) =>
+                              const Icon(Icons.image_not_supported),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(item.title ?? '', style: AppTexts.small),
+                              const SizedBox(height: 4),
+                              Text('Brand: ${item.brand ?? "-"}',
+                                  style: AppTexts.small),
+                              Text('Qty: ${1}', style: AppTexts.small),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(item.title ?? '', style: AppTexts.small),
-                          const SizedBox(height: 4),
-                          Text('Brand: ${item.brand ?? "-"}',
-                              style: AppTexts.small),
-                          Text('Qty: ${1}', style: AppTexts.small),
-                        ],
-                      ),
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                            'Price: \$${item.price?.toStringAsFixed(2) ?? "0"}',
+                            style: AppTexts.small),
+                        Text('Total: \$${total.toStringAsFixed(2)}',
+                            style: AppTexts.small),
+                      ],
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Price: \$${item.price?.toStringAsFixed(2) ?? "0"}',
-                        style: AppTexts.small),
-                    Text('Total: \$${total.toStringAsFixed(2)}',
-                        style: AppTexts.small),
-                  ],
+              ),
+              InkWell(
+                onTap: () {
+                  context.read<AddToCardCubit>().removeItemFromCart(item);
+                },
+                child: Icon(
+                  Icons.cancel,
+                  color: Colors.black,
+                  size: 22,
                 ),
-              ],
-            ),
+              ),
+            ],
           );
         }).toList(),
       );
@@ -179,13 +236,30 @@ class CartPage extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
                   child: Row(
                     children: [
-                      Image.network(
-                        item.thumbnail ?? '',
-                        width: 60,
-                        height: 60,
-                        fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) =>
-                            const Icon(Icons.image_not_supported),
+                      Stack(
+                        alignment: Alignment.topRight,
+                        children: [
+                          Image.network(
+                            item.thumbnail ?? '',
+                            width: 60,
+                            height: 60,
+                            fit: BoxFit.cover,
+                            errorBuilder: (_, __, ___) =>
+                                const Icon(Icons.image_not_supported),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              context
+                                  .read<AddToCardCubit>()
+                                  .removeItemFromCart(item);
+                            },
+                            child: Icon(
+                              Icons.cancel,
+                              color: Colors.black,
+                              size: 18,
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(width: 12),
                       Expanded(
@@ -227,6 +301,7 @@ class CartPage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Cart Total', style: AppTexts.regularSimiBold),
           SizedBox(height: 20),

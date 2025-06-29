@@ -20,4 +20,8 @@ class AddToCardCubit extends Cubit<AddToCardState> {
       ..remove(item);
     emit(CartState(cartItems: updatedCart));
   }
+
+  void clearItemsFromCart() {
+    emit(CartState(cartItems: []));
+  }
 }
