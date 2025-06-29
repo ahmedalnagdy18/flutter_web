@@ -373,6 +373,7 @@ class CartPage extends StatelessWidget {
                   buttonColor: Colors.green,
                   onPressed: () {
                     NavigationHelper.goToOrderCompletedPage(context!);
+                    context.read<AddToCardCubit>().clearItemsFromCart();
                   },
                   text: "Checkout",
                 ),
