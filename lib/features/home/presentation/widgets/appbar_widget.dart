@@ -18,7 +18,8 @@ class AppbarMobileWidget extends StatelessWidget {
             children: [
               InkWell(
                   onTap: () => NavigationHelper.goToHomePage(context),
-                  child: Text("WEBSITE", style: AppTexts.regularSimiBold)),
+                  child: Text("WEBSITE",
+                      style: AppTexts.title.copyWith(fontSize: 18))),
               Spacer(),
               InkWell(
                   onTap: () => NavigationHelper.goToCartPage(context),
@@ -27,20 +28,20 @@ class AppbarMobileWidget extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.shopping_basket_outlined,
-                        size: 20,
+                        size: 24,
                         color: state.cartItems.isNotEmpty ? Colors.red : null,
                       ),
                       state.cartItems.isNotEmpty
                           ? Container(
-                              height: 14,
-                              width: 14,
+                              height: 16,
+                              width: 16,
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle, color: Colors.red),
                               child: Center(
                                 child: Text(
                                   "${state.cartItems.length}",
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 8),
+                                      color: Colors.white, fontSize: 10),
                                 ),
                               ),
                             )
@@ -52,7 +53,7 @@ class AppbarMobileWidget extends StatelessWidget {
                   onTap: () => _showMenuBottomSheet(context),
                   child: Icon(
                     Icons.menu,
-                    size: 20,
+                    size: 22,
                   )),
             ],
           );
