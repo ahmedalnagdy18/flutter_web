@@ -53,6 +53,7 @@ class CartPage extends StatelessWidget {
                             //cart Summary
                             state.cartItems.isNotEmpty
                                 ? cartSammary(
+                                    context: context,
                                     finalTotal:
                                         '\$${finalTotal.toStringAsFixed(2)}',
                                     cartTotal:
@@ -68,6 +69,7 @@ class CartPage extends StatelessWidget {
                             //cart Summary
                             state.cartItems.isNotEmpty
                                 ? cartSammary(
+                                    context: context,
                                     finalTotal:
                                         '\$${finalTotal.toStringAsFixed(2)}',
                                     cartTotal:
@@ -119,7 +121,7 @@ class CartPage extends StatelessWidget {
             width: 150,
             child: MainAppButton(
               onPressed: () {
-                NavigationHelper.goToCollection(context, 'Products');
+                NavigationHelper.goToHomePage(context);
               },
               text: "Shopping now",
             ),
@@ -299,7 +301,8 @@ class CartPage extends StatelessWidget {
     }
   }
 
-  Widget cartSammary({String? finalTotal, String? cartTotal}) {
+  Widget cartSammary(
+      {BuildContext? context, String? finalTotal, String? cartTotal}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -368,7 +371,9 @@ class CartPage extends StatelessWidget {
                 MainAppButton(
                   borderColor: Colors.green,
                   buttonColor: Colors.green,
-                  onPressed: () {},
+                  onPressed: () {
+                    NavigationHelper.goToOrderCompletedPage(context!);
+                  },
                   text: "Checkout",
                 ),
               ],

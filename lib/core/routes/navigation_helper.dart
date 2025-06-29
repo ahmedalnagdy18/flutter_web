@@ -6,6 +6,7 @@ import 'package:flutter_website/features/home/presentation/screens/collection_pa
 import 'package:flutter_website/features/home/presentation/screens/contact_us_page.dart';
 import 'package:flutter_website/features/home/presentation/screens/faq_page.dart';
 import 'package:flutter_website/features/home/presentation/screens/home_page.dart';
+import 'package:flutter_website/features/home/presentation/screens/order_complete_page.dart';
 import 'package:flutter_website/features/home/presentation/screens/product_details_page.dart';
 
 class NavigationHelper {
@@ -16,6 +17,7 @@ class NavigationHelper {
   static const String productDetailsRoute = '/product';
   static const String collectionRoutePrefix = '/collection';
   static const String cartRoute = '/cart';
+  static const String orderCompleteRoute = '/order';
 
   static void goToHomePage(BuildContext context) {
     final currentRoute = ModalRoute.of(context)?.settings.name;
@@ -106,6 +108,19 @@ class NavigationHelper {
           settings: const RouteSettings(name: cartRoute),
           builder: (context) => CartPage(),
         ),
+      );
+    }
+  }
+
+  static void goToOrderCompletedPage(BuildContext context) {
+    final currentRoute = ModalRoute.of(context)?.settings.name;
+    if (currentRoute != orderCompleteRoute) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          settings: const RouteSettings(name: homeRoute),
+          builder: (context) => const OrderCompletePage(),
+        ),
+        (Route<dynamic> route) => false,
       );
     }
   }

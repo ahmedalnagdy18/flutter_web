@@ -24,7 +24,7 @@ class ProductDetailsPage extends StatelessWidget {
             // appbar part
             AppbarCommonWidget(title: 'Product details'),
 
-            SizedBox(height: 50),
+            SizedBox(height: 70),
             isMobile
                 ? Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 22),
