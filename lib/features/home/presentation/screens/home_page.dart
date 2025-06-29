@@ -57,10 +57,7 @@ class _HomePage extends StatelessWidget {
                           builder: (context, constraints) {
                             if (constraints.maxWidth < 800) {
                               // Scrollable version for small screens
-                              return SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: AppbarMobileWidget(),
-                              );
+                              return AppbarMobileWidget();
                             } else {
                               // Normal layout for wide screens
                               return AppbarWidget();

@@ -33,7 +33,9 @@ class CartPage extends StatelessWidget {
           backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: state.cartItems.isNotEmpty
+                  ? CrossAxisAlignment.start
+                  : CrossAxisAlignment.center,
               children: [
                 const AppbarCommonWidget(title: 'Shopping Cart'),
                 const SizedBox(height: 50),

@@ -31,26 +31,29 @@ class ProductDetailsPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            SizedBox(
-                                width: 100,
-                                height: 100,
-                                child: Image.network(
-                                    products.images?.first ?? "")),
-                            SizedBox(width: 12),
-                            SizedBox(
-                                width: 100,
-                                height: 100,
-                                child: Image.network(
-                                    products.images?.first ?? "")),
-                            SizedBox(width: 12),
-                            SizedBox(
-                                width: 100,
-                                height: 100,
-                                child: Image.network(
-                                    products.images?.first ?? "")),
-                          ],
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                  width: 100,
+                                  height: 100,
+                                  child: Image.network(
+                                      products.images?.first ?? "")),
+                              SizedBox(width: 12),
+                              SizedBox(
+                                  width: 100,
+                                  height: 100,
+                                  child: Image.network(
+                                      products.images?.first ?? "")),
+                              SizedBox(width: 12),
+                              SizedBox(
+                                  width: 100,
+                                  height: 100,
+                                  child: Image.network(
+                                      products.images?.first ?? "")),
+                            ],
+                          ),
                         ),
                         SizedBox(height: 12),
                         Image.network(products.images?.first ?? ""),
