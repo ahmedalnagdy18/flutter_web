@@ -226,83 +226,78 @@ class CartPage extends StatelessWidget {
   Widget cartSammary({String? finalTotal, String? cartTotal}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Expanded(
-        child: Column(
-          children: [
-            Text('Cart Total', style: AppTexts.regularSimiBold),
-            SizedBox(height: 20),
-            Container(
-              width: 250,
-              padding: EdgeInsets.symmetric(horizontal: 22, vertical: 22),
-              decoration: BoxDecoration(
-                color: Color(0xFFF1F8FD),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Flexible(
-                          child:
-                              Text('Subtotals:', style: AppTexts.miniRegular)),
-                      Flexible(
-                          child: Text(cartTotal ?? "",
-                              style: AppTexts.miniRegular)),
-                    ],
-                  ),
-                  Divider(color: Colors.grey.shade300),
-                  SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Flexible(
-                          child:
-                              Text('Shipping:', style: AppTexts.miniRegular)),
-                      Flexible(
-                          child: Text('\$20', style: AppTexts.miniRegular)),
-                    ],
-                  ),
-                  Divider(color: Colors.grey.shade300),
-                  SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Flexible(
-                          child: Text('Total:', style: AppTexts.miniRegular)),
-                      Flexible(
-                          child: Text(finalTotal ?? "",
-                              style: AppTexts.miniRegular)),
-                    ],
-                  ),
-                  Divider(color: Colors.grey.shade300),
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.verified,
-                        color: Colors.green,
-                        size: 14,
-                      ),
-                      SizedBox(width: 12),
-                      Expanded(
-                        child: Text('Shipping & taxes calculated at cheackout:',
-                            style: AppTexts.small),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  MainAppButton(
-                    borderColor: Colors.green,
-                    buttonColor: Colors.green,
-                    onPressed: () {},
-                    text: "Checkout",
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+      child: Column(
+        children: [
+          Text('Cart Total', style: AppTexts.regularSimiBold),
+          SizedBox(height: 20),
+          Container(
+            width: 250,
+            padding: EdgeInsets.symmetric(horizontal: 22, vertical: 22),
+            decoration: BoxDecoration(
+              color: Color(0xFFF1F8FD),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                        child: Text('Subtotals:', style: AppTexts.miniRegular)),
+                    Flexible(
+                        child:
+                            Text(cartTotal ?? "", style: AppTexts.miniRegular)),
+                  ],
+                ),
+                Divider(color: Colors.grey.shade300),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                        child: Text('Shipping:', style: AppTexts.miniRegular)),
+                    Flexible(child: Text('\$20', style: AppTexts.miniRegular)),
+                  ],
+                ),
+                Divider(color: Colors.grey.shade300),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                        child: Text('Total:', style: AppTexts.miniRegular)),
+                    Flexible(
+                        child: Text(finalTotal ?? "",
+                            style: AppTexts.miniRegular)),
+                  ],
+                ),
+                Divider(color: Colors.grey.shade300),
+                SizedBox(height: 20),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.verified,
+                      color: Colors.green,
+                      size: 14,
+                    ),
+                    SizedBox(width: 12),
+                    Expanded(
+                      child: Text('Shipping & taxes calculated at cheackout:',
+                          style: AppTexts.small),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                MainAppButton(
+                  borderColor: Colors.green,
+                  buttonColor: Colors.green,
+                  onPressed: () {},
+                  text: "Checkout",
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
