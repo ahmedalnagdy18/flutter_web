@@ -27,7 +27,7 @@ class _CollectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-
+    final isLargeScreen = MediaQuery.of(context).size.width > 1400;
     int getCrossAxisCount(double width) {
       if (width < 600) return 2; // mobile
       if (width < 1000) return 3; // tablet
@@ -55,12 +55,14 @@ class _CollectionPage extends StatelessWidget {
                   ),
                   SizedBox(height: 50),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 22),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: isLargeScreen ? 200 : 22),
                     child: Text("$type Sport Item", style: AppTexts.title),
                   ),
                   SizedBox(height: 24),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 22),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: isLargeScreen ? 200 : 22),
                     child: GridView.builder(
                         itemCount: 11,
                         shrinkWrap: true,

@@ -105,9 +105,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             else
               Center(
                 child: Container(
-                  padding: EdgeInsets.all(12),
+                  padding: EdgeInsets.symmetric(horizontal: 100, vertical: 8),
                   width: double.infinity,
-                  height: appHight(context, isMobile ? 0.50 : 0.30),
+                  height: appHight(context, isMobile ? 0.50 : 0.34),
                   color: AppColors.lightGrey,
                   child: Row(
                     children: [
@@ -173,16 +173,19 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                               child: Text(widget.products.description ?? "",
                                   style: AppTexts.small),
                             ),
-                            MainAppButton(
-                              onPressed: () {
-                                context
-                                    .read<AddToCardCubit>()
-                                    .addItemToCart(widget.products);
-                                showToastMessage(
-                                    message:
-                                        'Product added to cart successfully');
-                              },
-                              text: "Add to cart",
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 20),
+                              child: MainAppButton(
+                                onPressed: () {
+                                  context
+                                      .read<AddToCardCubit>()
+                                      .addItemToCart(widget.products);
+                                  showToastMessage(
+                                      message:
+                                          'Product added to cart successfully');
+                                },
+                                text: "Add to cart",
+                              ),
                             ),
                           ],
                         ),

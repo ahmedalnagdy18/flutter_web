@@ -8,8 +8,9 @@ class CollectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 800;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 22),
+      padding: EdgeInsets.symmetric(horizontal: isMobile ? 22 : 60),
       child: SizedBox(
         height: appHight(context, 0.30),
         width: double.infinity,

@@ -29,7 +29,7 @@ class _HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-
+    final isMobile = MediaQuery.of(context).size.width < 800;
     int getCrossAxisCount(double width) {
       if (width < 600) return 2; // mobile
       if (width < 1000) return 3; // tablet
@@ -52,7 +52,8 @@ class _HomePage extends StatelessWidget {
                     width: double.infinity,
                     decoration: BoxDecoration(color: Colors.white),
                     child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 22),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: isMobile ? 22 : 60),
                         child: LayoutBuilder(
                           builder: (context, constraints) {
                             if (constraints.maxWidth < 800) {
@@ -92,12 +93,14 @@ class _HomePage extends StatelessWidget {
                   ),
                   SizedBox(height: 50),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 22),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: isMobile ? 22 : 60),
                     child: Text("Leatest Products", style: AppTexts.title),
                   ),
                   SizedBox(height: 25),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 22),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: isMobile ? 22 : 60),
                     child: GridView.builder(
                         itemCount: 8,
                         shrinkWrap: true,
@@ -172,7 +175,8 @@ class _HomePage extends StatelessWidget {
                   SizedBox(height: 50),
                   // collection part
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 22),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: isMobile ? 22 : 60),
                     child: Text("Collection", style: AppTexts.title),
                   ),
                   SizedBox(height: 24),
@@ -180,7 +184,8 @@ class _HomePage extends StatelessWidget {
                   SizedBox(height: 50),
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 22),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: isMobile ? 22 : 60),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [

@@ -132,52 +132,56 @@ class _FaqPageState extends State<FaqPage> {
                         )),
                         SizedBox(width: 100),
                         Expanded(
-                          child: Container(
+                          child: Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 50, vertical: 35),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFF1F8FD),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text('Ask a Question',
-                                    style: AppTexts.regularSimiBold),
-                                SizedBox(height: 50),
-                                TextFieldWidget(
-                                  mycontroller: nameController,
-                                  hintText: 'Your Name*',
-                                ),
-                                SizedBox(height: 24),
-                                TextFieldWidget(
-                                  mycontroller: subjectController,
-                                  hintText: 'Subject*',
-                                ),
-                                SizedBox(height: 24),
-                                TextFieldWidget(
-                                  mycontroller: messageController,
-                                  hintText: 'Type Your Message*',
-                                  maxLines: 6,
-                                ),
-                                SizedBox(height: 24),
-                                SizedBox(
-                                  width: 150,
-                                  child: MainAppButton(
-                                    buttonColor: AppColors.primaryColor,
-                                    onPressed: isButtonEnabled
-                                        ? () {
-                                            messageController.clear();
-                                            subjectController.clear();
-                                            nameController.clear();
-                                            showToastMessage(
-                                                message: 'Mail send success');
-                                          }
-                                        : null,
-                                    text: "Send Mail",
+                                horizontal: isMobile ? 22 : 60),
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 50, vertical: 35),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFF1F8FD),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text('Ask a Question',
+                                      style: AppTexts.regularSimiBold),
+                                  SizedBox(height: 50),
+                                  TextFieldWidget(
+                                    mycontroller: nameController,
+                                    hintText: 'Your Name*',
                                   ),
-                                ),
-                              ],
+                                  SizedBox(height: 24),
+                                  TextFieldWidget(
+                                    mycontroller: subjectController,
+                                    hintText: 'Subject*',
+                                  ),
+                                  SizedBox(height: 24),
+                                  TextFieldWidget(
+                                    mycontroller: messageController,
+                                    hintText: 'Type Your Message*',
+                                    maxLines: 6,
+                                  ),
+                                  SizedBox(height: 24),
+                                  SizedBox(
+                                    width: 150,
+                                    child: MainAppButton(
+                                      buttonColor: AppColors.primaryColor,
+                                      onPressed: isButtonEnabled
+                                          ? () {
+                                              messageController.clear();
+                                              subjectController.clear();
+                                              nameController.clear();
+                                              showToastMessage(
+                                                  message: 'Mail send success');
+                                            }
+                                          : null,
+                                      text: "Send Mail",
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

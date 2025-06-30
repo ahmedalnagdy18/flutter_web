@@ -63,7 +63,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
             AppbarCommonWidget(title: 'Contact Us'),
             SizedBox(height: 50),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 22),
+              padding: EdgeInsets.symmetric(horizontal: isMobile ? 22 : 60),
               child: isMobile
                   ? ContactUsMobileWidget()
                   //! tablet and computers
@@ -204,7 +204,8 @@ class _ContactUsPageState extends State<ContactUsPage> {
                     ),
                   )
                 : Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 22),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: isMobile ? 22 : 60),
                     child: Row(
                       children: [
                         Expanded(
