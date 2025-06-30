@@ -114,38 +114,34 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       /// Thumbnails (left column)
                       SingleChildScrollView(
                         scrollDirection: Axis.vertical,
-                        child: Expanded(
-                          flex: 1,
-                          child: Column(
-                            children: List.generate(images.length, (index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    selectedImageIndex = index;
-                                  });
-                                },
-                                child: Container(
-                                  margin: EdgeInsets.only(bottom: 12),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: selectedImageIndex == index
-                                          ? AppColors.primaryColor
-                                          : Colors.grey.shade300,
-                                      width:
-                                          selectedImageIndex == index ? 3 : 1,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
+                        child: Column(
+                          children: List.generate(images.length, (index) {
+                            return GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  selectedImageIndex = index;
+                                });
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(bottom: 12),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: selectedImageIndex == index
+                                        ? AppColors.primaryColor
+                                        : Colors.grey.shade300,
+                                    width: selectedImageIndex == index ? 3 : 1,
                                   ),
-                                  child: Image.network(
-                                    images[index],
-                                    height: 80,
-                                    width: 80,
-                                    fit: BoxFit.cover,
-                                  ),
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
-                              );
-                            }),
-                          ),
+                                child: Image.network(
+                                  images[index],
+                                  height: 80,
+                                  width: 80,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            );
+                          }),
                         ),
                       ),
                       SizedBox(width: 12),
