@@ -62,9 +62,9 @@ class _CollectionPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 22),
                     child: GridView.builder(
-                        itemCount: 12,
+                        itemCount: 11,
                         shrinkWrap: true,
-                        reverse: true,
+                        // reverse: true,
                         physics: NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: getCrossAxisCount(screenWidth),
@@ -73,7 +73,12 @@ class _CollectionPage extends StatelessWidget {
                           childAspectRatio: 1,
                         ),
                         itemBuilder: (context, index) {
-                          final products = state.posts[index];
+                          final filteredProducts = state.posts
+                              .where((product) =>
+                                  (product.images?.length ?? 0) >= 3)
+                              .toList();
+
+                          final products = filteredProducts[index];
                           return AnimationConfiguration.staggeredGrid(
                             position: index,
                             columnCount: getCrossAxisCount(screenWidth),

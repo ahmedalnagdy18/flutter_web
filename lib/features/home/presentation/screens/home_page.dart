@@ -110,7 +110,13 @@ class _HomePage extends StatelessWidget {
                           mainAxisExtent: 200,
                         ),
                         itemBuilder: (context, index) {
-                          final products = state.posts[index];
+                          final filteredProducts = state.posts
+                              .where((product) =>
+                                  (product.images?.length ?? 0) >= 3)
+                              .toList();
+
+                          final products = filteredProducts[index];
+
                           return AnimationConfiguration.staggeredGrid(
                             position: index,
                             columnCount: getCrossAxisCount(screenWidth),
