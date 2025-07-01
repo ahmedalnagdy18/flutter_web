@@ -43,6 +43,7 @@ class _PrecacheWrapperState extends State<PrecacheWrapper> {
     precacheImage(AssetImage(AppAssetImage.bags), context);
     precacheImage(AssetImage(AppAssetImage.woman), context);
     precacheImage(AssetImage(AppAssetImage.men), context);
+    precacheImage(AssetImage(AppAssetImage.noConnection), context);
   }
 
   @override

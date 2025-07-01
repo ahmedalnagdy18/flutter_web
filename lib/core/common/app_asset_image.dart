@@ -5,4 +5,5 @@ class AppAssetImage {
   static String bags = 'images/bags.jpg';
   static String woman = 'images/woman.jpg';
   static String men = 'images/men.jpg';
+  static String noConnection = 'images/noconnection.png';
 }
