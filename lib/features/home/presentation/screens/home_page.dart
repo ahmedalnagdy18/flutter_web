@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_website/core/colors/app_color.dart';
+import 'package:flutter_website/core/common/no_internet_widget.dart';
 import 'package:flutter_website/core/fonts/app_text.dart';
 import 'package:flutter_website/core/routes/navigation_helper.dart';
+import 'package:flutter_website/core/utils/internet_connection_mixin.dart';
 import 'package:flutter_website/extentions/app_extentions.dart';
 import 'package:flutter_website/features/home/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:flutter_website/features/home/presentation/widgets/appbar_widget.dart';
@@ -23,9 +25,14 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _HomePage extends StatelessWidget {
+class _HomePage extends StatefulWidget {
   const _HomePage();
 
+  @override
+  State<_HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<_HomePage> with InternetConnectionMixin {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -38,6 +45,9 @@ class _HomePage extends StatelessWidget {
 
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
+        if (!hasInternet) {
+          return NoInternetWidget();
+        }
         if (state is SucsessProducts) {
           return Scaffold(
             backgroundColor: Colors.white,

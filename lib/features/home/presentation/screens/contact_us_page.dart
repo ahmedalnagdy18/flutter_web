@@ -3,7 +3,9 @@ import 'package:flutter_website/core/colors/app_color.dart';
 import 'package:flutter_website/core/common/app_buttons.dart';
 import 'package:flutter_website/core/common/app_textfield.dart';
 import 'package:flutter_website/core/common/appbar_common_widget.dart';
+import 'package:flutter_website/core/common/no_internet_widget.dart';
 import 'package:flutter_website/core/fonts/app_text.dart';
+import 'package:flutter_website/core/utils/internet_connection_mixin.dart';
 import 'package:flutter_website/extentions/app_extentions.dart';
 import 'package:flutter_website/features/home/presentation/widgets/contact_us_mobile_widget.dart';
 import 'package:flutter_website/features/home/presentation/widgets/footer_widget.dart';
@@ -15,7 +17,8 @@ class ContactUsPage extends StatefulWidget {
   State<ContactUsPage> createState() => _ContactUsPageState();
 }
 
-class _ContactUsPageState extends State<ContactUsPage> {
+class _ContactUsPageState extends State<ContactUsPage>
+    with InternetConnectionMixin {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController subjectController = TextEditingController();
@@ -54,6 +57,9 @@ class _ContactUsPageState extends State<ContactUsPage> {
   @override
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < 800;
+    if (!hasInternet) {
+      return NoInternetWidget();
+    }
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(

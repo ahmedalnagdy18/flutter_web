@@ -4,7 +4,9 @@ import 'package:flutter_website/core/colors/app_color.dart';
 import 'package:flutter_website/core/common/app_buttons.dart';
 import 'package:flutter_website/core/common/app_textfield.dart';
 import 'package:flutter_website/core/common/appbar_common_widget.dart';
+import 'package:flutter_website/core/common/no_internet_widget.dart';
 import 'package:flutter_website/core/fonts/app_text.dart';
+import 'package:flutter_website/core/utils/internet_connection_mixin.dart';
 import 'package:flutter_website/features/home/presentation/widgets/footer_widget.dart';
 
 class LoginPage extends StatefulWidget {
@@ -14,7 +16,7 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> with InternetConnectionMixin {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -46,6 +48,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < 800;
+    if (!hasInternet) {
+      return NoInternetWidget();
+    }
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(

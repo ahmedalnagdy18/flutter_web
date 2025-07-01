@@ -2,16 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_website/core/common/app_buttons.dart';
 import 'package:flutter_website/core/common/appbar_common_widget.dart';
+import 'package:flutter_website/core/common/no_internet_widget.dart';
 import 'package:flutter_website/core/fonts/app_text.dart';
 import 'package:flutter_website/core/routes/navigation_helper.dart';
+import 'package:flutter_website/core/utils/internet_connection_mixin.dart';
 import 'package:flutter_website/features/home/presentation/cubits/add_to_cart/add_to_card_cubit.dart';
 import 'package:flutter_website/features/home/presentation/widgets/footer_widget.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({super.key});
 
   @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> with InternetConnectionMixin {
+  @override
   Widget build(BuildContext context) {
+    if (!hasInternet) {
+      return NoInternetWidget();
+    }
     final isMobile = MediaQuery.of(context).size.width < 800;
     return BlocBuilder<AddToCardCubit, AddToCardState>(
       builder: (context, state) {

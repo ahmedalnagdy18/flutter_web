@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_website/core/colors/app_color.dart';
+import 'package:flutter_website/core/common/no_internet_widget.dart';
 import 'package:flutter_website/core/fonts/app_text.dart';
 import 'package:flutter_website/core/routes/navigation_helper.dart';
+import 'package:flutter_website/core/utils/internet_connection_mixin.dart';
 import 'package:flutter_website/extentions/app_extentions.dart';
 import 'package:flutter_website/features/home/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:flutter_website/features/home/presentation/widgets/footer_widget.dart';
@@ -21,9 +23,16 @@ class CollectionPage extends StatelessWidget {
   }
 }
 
-class _CollectionPage extends StatelessWidget {
+class _CollectionPage extends StatefulWidget {
   const _CollectionPage({required this.type});
   final String type;
+
+  @override
+  State<_CollectionPage> createState() => _CollectionPageState();
+}
+
+class _CollectionPageState extends State<_CollectionPage>
+    with InternetConnectionMixin {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -36,6 +45,9 @@ class _CollectionPage extends StatelessWidget {
 
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
+        if (!hasInternet) {
+          return NoInternetWidget();
+        }
         if (state is SucsessProducts) {
           return Scaffold(
             backgroundColor: Colors.white,
@@ -49,7 +61,7 @@ class _CollectionPage extends StatelessWidget {
                     color: Colors.black,
                     child: Center(
                         child: Text(
-                      "$type Collection",
+                      "${widget.type} Collection",
                       style: AppTexts.subTitle,
                     )),
                   ),
@@ -57,7 +69,8 @@ class _CollectionPage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: isLargeScreen ? 200 : 22),
-                    child: Text("$type Sport Item", style: AppTexts.title),
+                    child: Text("${widget.type} Sport Item",
+                        style: AppTexts.title),
                   ),
                   SizedBox(height: 24),
                   Padding(

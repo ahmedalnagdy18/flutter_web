@@ -3,8 +3,10 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_website/core/colors/app_color.dart';
 import 'package:flutter_website/core/common/app_buttons.dart';
 import 'package:flutter_website/core/common/appbar_common_widget.dart';
+import 'package:flutter_website/core/common/no_internet_widget.dart';
 import 'package:flutter_website/core/fonts/app_text.dart';
 import 'package:flutter_website/core/routes/navigation_helper.dart';
+import 'package:flutter_website/core/utils/internet_connection_mixin.dart';
 import 'package:flutter_website/features/home/presentation/widgets/footer_widget.dart';
 
 class AboutUsPage extends StatefulWidget {
@@ -14,11 +16,15 @@ class AboutUsPage extends StatefulWidget {
   State<AboutUsPage> createState() => _AboutUsPageState();
 }
 
-class _AboutUsPageState extends State<AboutUsPage> {
+class _AboutUsPageState extends State<AboutUsPage>
+    with InternetConnectionMixin {
   List<bool> hovered = List.generate(4, (_) => false);
   @override
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < 800;
+    if (!hasInternet) {
+      return NoInternetWidget();
+    }
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(

@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_website/core/colors/app_color.dart';
 import 'package:flutter_website/core/common/app_buttons.dart';
 import 'package:flutter_website/core/common/appbar_common_widget.dart';
+import 'package:flutter_website/core/common/no_internet_widget.dart';
 import 'package:flutter_website/core/fonts/app_text.dart';
+import 'package:flutter_website/core/utils/internet_connection_mixin.dart';
 import 'package:flutter_website/extentions/app_extentions.dart';
 import 'package:flutter_website/features/home/domain/entity/model/product_model.dart';
 import 'package:flutter_website/features/home/presentation/cubits/add_to_cart/add_to_card_cubit.dart';
@@ -17,14 +19,17 @@ class ProductDetailsPage extends StatefulWidget {
   State<ProductDetailsPage> createState() => _ProductDetailsPageState();
 }
 
-class _ProductDetailsPageState extends State<ProductDetailsPage> {
+class _ProductDetailsPageState extends State<ProductDetailsPage>
+    with InternetConnectionMixin {
   int selectedImageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < 800;
     final images = widget.products.images ?? [];
-
+    if (!hasInternet) {
+      return NoInternetWidget();
+    }
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
