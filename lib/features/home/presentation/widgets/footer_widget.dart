@@ -15,6 +15,7 @@ class FooterWidget extends StatelessWidget {
         builder: (context, constraints) {
           bool isMobile = constraints.maxWidth < 600;
           return Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(

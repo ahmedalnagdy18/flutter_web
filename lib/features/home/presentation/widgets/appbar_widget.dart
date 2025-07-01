@@ -99,6 +99,7 @@ void _showMenuBottomSheet(BuildContext context) {
             leading: Icon(Icons.person_2_outlined),
             onTap: () {
               Navigator.pop(context);
+              NavigationHelper.goToLoginPage(context);
             },
           ),
           ListTile(
@@ -158,7 +159,10 @@ class AppbarWidget extends StatelessWidget {
                   onPressed: () {}, icon: const Icon(Icons.search_outlined)),
               const SizedBox(width: 12),
               IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.person_2_outlined)),
+                  onPressed: () {
+                    NavigationHelper.goToLoginPage(context);
+                  },
+                  icon: const Icon(Icons.person_2_outlined)),
               const SizedBox(width: 12),
               Stack(
                 alignment: Alignment.topRight,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_website/features/authentication/presentation/screens/login_page.dart';
 import 'package:flutter_website/features/home/domain/entity/model/product_model.dart';
 import 'package:flutter_website/features/home/presentation/screens/about_us_page.dart';
 import 'package:flutter_website/features/home/presentation/screens/cart_page.dart';
@@ -18,6 +19,7 @@ class NavigationHelper {
   static const String collectionRoutePrefix = '/collection';
   static const String cartRoute = '/cart';
   static const String orderCompleteRoute = '/order';
+  static const String loginRoute = '/login';
 
   static void goToHomePage(BuildContext context) {
     final currentRoute = ModalRoute.of(context)?.settings.name;
@@ -117,10 +119,23 @@ class NavigationHelper {
     if (currentRoute != orderCompleteRoute) {
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
-          settings: const RouteSettings(name: homeRoute),
+          settings: const RouteSettings(name: orderCompleteRoute),
           builder: (context) => const OrderCompletePage(),
         ),
         (Route<dynamic> route) => false,
+      );
+    }
+  }
+
+  static void goToLoginPage(BuildContext context) {
+    final currentRoute = ModalRoute.of(context)?.settings.name;
+    if (currentRoute != loginRoute) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          settings: const RouteSettings(name: loginRoute),
+          builder: (context) => LoginPage(),
+        ),
       );
     }
   }

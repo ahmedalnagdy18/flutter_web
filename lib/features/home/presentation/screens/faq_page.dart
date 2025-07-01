@@ -131,13 +131,16 @@ class _FaqPageState extends State<FaqPage> {
                           ],
                         )),
                         SizedBox(width: 100),
-                        Expanded(
+                        Flexible(
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: isMobile ? 22 : 60),
+                                horizontal: isMobile ? 22 : 0),
                             child: Container(
+                              constraints: BoxConstraints(
+                                maxWidth: 600,
+                              ),
                               padding: EdgeInsets.symmetric(
-                                  horizontal: 50, vertical: 35),
+                                  horizontal: 20, vertical: 20),
                               decoration: BoxDecoration(
                                 color: Color(0xFFF1F8FD),
                               ),
