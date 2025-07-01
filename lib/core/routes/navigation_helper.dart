@@ -25,9 +25,16 @@ class NavigationHelper {
     final currentRoute = ModalRoute.of(context)?.settings.name;
     if (currentRoute != homeRoute) {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
+        PageRouteBuilder(
           settings: const RouteSettings(name: homeRoute),
-          builder: (context) => const HomePage(),
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const HomePage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
         ),
         (Route<dynamic> route) => false,
       );
@@ -40,9 +47,16 @@ class NavigationHelper {
     if (currentRoute != targetRoute) {
       Navigator.push(
         context,
-        MaterialPageRoute(
+        PageRouteBuilder(
           settings: RouteSettings(name: targetRoute),
-          builder: (context) => CollectionPage(type: type),
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              CollectionPage(type: type),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
         ),
       );
     }
@@ -54,9 +68,16 @@ class NavigationHelper {
     if (currentRoute != productDetailsRoute) {
       Navigator.push(
         context,
-        MaterialPageRoute(
+        PageRouteBuilder(
           settings: const RouteSettings(name: productDetailsRoute),
-          builder: (context) => ProductDetailsPage(products: products),
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              ProductDetailsPage(products: products),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
         ),
       );
     }
@@ -67,9 +88,17 @@ class NavigationHelper {
     if (currentRoute != aboutUsRoute) {
       Navigator.push(
         context,
-        MaterialPageRoute(
+        PageRouteBuilder(
           settings: const RouteSettings(name: aboutUsRoute),
-          builder: (context) => AboutUsPage(),
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              AboutUsPage(),
+          //   transitionDuration: Duration(milliseconds: 0), // No animation
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
         ),
       );
     }
@@ -80,9 +109,16 @@ class NavigationHelper {
     if (currentRoute != contactUsRoute) {
       Navigator.push(
         context,
-        MaterialPageRoute(
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              ContactUsPage(),
           settings: const RouteSettings(name: contactUsRoute),
-          builder: (context) => ContactUsPage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
         ),
       );
     }
@@ -93,9 +129,15 @@ class NavigationHelper {
     if (currentRoute != faqRoute) {
       Navigator.push(
         context,
-        MaterialPageRoute(
+        PageRouteBuilder(
           settings: const RouteSettings(name: faqRoute),
-          builder: (context) => FaqPage(),
+          pageBuilder: (context, animation, secondaryAnimation) => FaqPage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
         ),
       );
     }
@@ -106,9 +148,15 @@ class NavigationHelper {
     if (currentRoute != cartRoute) {
       Navigator.push(
         context,
-        MaterialPageRoute(
+        PageRouteBuilder(
           settings: const RouteSettings(name: cartRoute),
-          builder: (context) => CartPage(),
+          pageBuilder: (context, animation, secondaryAnimation) => CartPage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
         ),
       );
     }
@@ -118,9 +166,16 @@ class NavigationHelper {
     final currentRoute = ModalRoute.of(context)?.settings.name;
     if (currentRoute != orderCompleteRoute) {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
+        PageRouteBuilder(
           settings: const RouteSettings(name: orderCompleteRoute),
-          builder: (context) => const OrderCompletePage(),
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const OrderCompletePage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
         ),
         (Route<dynamic> route) => false,
       );
@@ -132,9 +187,15 @@ class NavigationHelper {
     if (currentRoute != loginRoute) {
       Navigator.push(
         context,
-        MaterialPageRoute(
+        PageRouteBuilder(
           settings: const RouteSettings(name: loginRoute),
-          builder: (context) => LoginPage(),
+          pageBuilder: (context, animation, secondaryAnimation) => LoginPage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
         ),
       );
     }

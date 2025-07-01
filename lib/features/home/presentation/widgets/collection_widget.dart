@@ -21,10 +21,18 @@ class CollectionWidget extends StatelessWidget {
               child: InkWell(
                   onTap: () => Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => CollectionPage(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            CollectionPage(
                           type: 'Bags',
                         ),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
                       )),
                   child: _collectionData(
                       name: "Bags", image: collectionsImages[0])),
@@ -38,10 +46,19 @@ class CollectionWidget extends StatelessWidget {
                     child: InkWell(
                         onTap: () => Navigator.push(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => CollectionPage(
+                            PageRouteBuilder(
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      CollectionPage(
                                 type: 'Woman',
                               ),
+                              transitionsBuilder: (context, animation,
+                                  secondaryAnimation, child) {
+                                return FadeTransition(
+                                  opacity: animation,
+                                  child: child,
+                                );
+                              },
                             )),
                         child: _collectionData(
                             name: "Woman", image: collectionsImages[1])),
@@ -51,10 +68,19 @@ class CollectionWidget extends StatelessWidget {
                     child: InkWell(
                         onTap: () => Navigator.push(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => CollectionPage(
+                            PageRouteBuilder(
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      CollectionPage(
                                 type: 'Men',
                               ),
+                              transitionsBuilder: (context, animation,
+                                  secondaryAnimation, child) {
+                                return FadeTransition(
+                                  opacity: animation,
+                                  child: child,
+                                );
+                              },
                             )),
                         child: _collectionData(
                             name: "Man", image: collectionsImages[2])),
